@@ -34,14 +34,11 @@
               "node_modules/angular-bootstrap-md/assets/scss/mdb.scss",
               "src/styles.scss",
               "node_modules/animate.css/animate.css",
-              "src/assets/css/style.css",
               "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
               "node_modules/chart.js/dist/Chart.js",
-              "node_modules/hammerjs/hammer.min.js",
-              "src/assets/vendor/jquery/jquery.min.js",
-              "src/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
+              "node_modules/hammerjs/hammer.min.js"
             ],
             "vendorChunk": true,
             "extractLicenses": false,
