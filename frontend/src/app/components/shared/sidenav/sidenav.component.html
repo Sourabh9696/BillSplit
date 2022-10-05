@@ -1,0 +1,38 @@
+<div class="example-container" style="height: 100vh;">
+    <mat-toolbar style="flex: 0 0 128px; background-color: #F2F3F4   ; color: gray; margin-top: -0.3%;">
+        <span style="flex: 1 1 auto;"></span>
+        <div>
+            <button mat-icon-button matTooltip="Full Screen" toggleFullscreen mat-button (click)="toggleFullscreen()">
+                <mat-icon>{{hide ? 'crop_free' : 'fullscreen_exit'}}</mat-icon>
+            </button>
+            <button mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+        </div>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="all-wrap">
+        <mat-sidenav mode="side" #sidenav [opened]="screenWidth! > 640" position="start" style="margin-top: 58px; ">
+            <div class="profile-card" style="margin-top: 12px;">
+                <div class="header">
+                    <img style="margin-right: 12%;" src="../../../../assets/img/logo.png" alt="Logo">
+                </div>
+            </div>
+
+            <mat-divider style="margin-top: 5px;"></mat-divider>
+            <div class="mt-3">
+                <mat-nav-list *ngFor="let items of menus">
+                    <a [routerLink]="[items.href]" outerLinkActive="active-list-item" mat-list-item class="ml-2"
+                        style="font-size:15px; font-weight: bold; color: gray;"><i class="material-icons"
+                            style="color: gray;">{{items.icons}}</i> &nbsp;&nbsp;{{items.name}}</a>
+                </mat-nav-list>
+            </div>
+            <mat-divider></mat-divider>
+        </mat-sidenav>
+        <mat-sidenav-content class="page-wrap">
+            <div class="container">
+                <router-outlet></router-outlet>
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

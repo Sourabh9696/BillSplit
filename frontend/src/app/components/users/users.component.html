@@ -1,0 +1,188 @@
+<div class="container">
+    <div class="card testimonial-card col-md-12 " *ngIf="userDetailsTable">
+        <div class="pt-2">
+            <div class="header">
+                <div class="row">
+                    <div class="col-md-6 mt-2">
+                        <button (click)="openModel('#addUserModel')" mat-stroked-button color="primary"
+                            style="float: left;">Add User</button>
+                    </div>
+                </div>
+                <hr>
+            </div>
+
+            <div class="card-content table-responsive mb-3">
+                <table id="userdetailstable" class="table table-hover ">
+                    <thead>
+                        <tr>
+                            <th>&nbsp; Action</th>
+                            <th>Full Name</th>
+                            <th>Email</th>
+                            <th>Contact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of UsersDetails">
+                            <td style="padding: 0px !important;">
+                                <mat-icon class="btn-sm" style="cursor: pointer;" matTooltip="Expenses"
+                                    (click)="getUsersExpense(item);">description</mat-icon>&nbsp;&nbsp;
+                                <mat-icon class="btn-sm" style="cursor: pointer;" matTooltip="Balance"
+                                    (click)="getUsersBalance(item)">money</mat-icon>
+                            </td>
+                            <td>{{item.fullName}}</td>
+                            <td>{{item.email}}</td>
+                            <td>{{item.contact}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addUserModel" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form *ngIf="addUserForm" [formGroup]="addUserForm" (ngSubmit)="AddUser()">
+                    <div class="row">
+                        <mat-form-field>
+                            <span matPrefix>
+                                <mat-icon>featured_video</mat-icon> &nbsp;&nbsp;
+                            </span>
+                            <input required type="text" matInput placeholder="Full Name" formControlName="fullName" />
+                            <mat-error *ngIf="isSubmitted && addUserForm.get('fullName').hasError('required')">Full Name
+                                is required</mat-error>
+                            <mat-error *ngIf="isSubmitted && addUserForm.get('fullName').hasError('pattern')">Full Name
+                                must contain at least 7 Characters</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <span matPrefix>
+                                <mat-icon>mail_outline</mat-icon> &nbsp;&nbsp;
+                            </span>
+                            <input required type="text" matInput placeholder="Email Id" formControlName="email" />
+                            <mat-error *ngIf="isSubmitted && addUserForm.get('email').hasError('required')">Email Id is
+                                required</mat-error>
+                            <mat-error *ngIf="isSubmitted && addUserForm.get('email').hasError('pattern')">Email Id is
+                                invalid</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field>
+                            <span matPrefix>
+                                <mat-icon>phone_android</mat-icon> &nbsp;&nbsp;
+                            </span>
+                            <input required type="text" matInput placeholder="Contact Number"
+                                formControlName="contact" />
+                            <mat-error *ngIf="isSubmitted && addUserForm.get('contact').hasError('required')">Contact
+                                Number is required</mat-error>
+                            <mat-error *ngIf="isSubmitted &&addUserForm.get('contact').hasError('pattern')">Contact
+                                Number is invalid</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6"></div>
+                        <div class="col-md-6"><button style="float: right;" type="submit" mat-flat-button
+                                color="primary">Add User</button></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="expenseUserModel" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">User's Expenses</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card testimonial-card col-md-12 " *ngIf="expenseDetailsTable">
+                    <div class="pt-2">
+
+                        <div class="card-content table-responsive mb-3 ">
+                            <table id="expensedetailstable" class="table table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Description</th>
+                                        <th>Category</th>
+                                        <th>Total Amount</th>
+                                        <th>Owe Amount</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of ExpenseDetails">
+                                        <td>{{item.name}}</td>
+                                        <td>{{item.description}}</td>
+                                        <td>{{item.category}}</td>
+                                        <td>{{item.amount}}</td>
+                                        <td>{{item.billUsers[0].amount}}</td>
+                                        <td>{{item.createdAt | date}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="balanceUserModel" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <h5 class="modal-title">User's Expenses</h5>
+                    </div>
+                    <div class="col-md-6 mt-1"><strong>Total Balance (Owe Amount) : {{totalBalance}}</strong> </div>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card testimonial-card col-md-12 " *ngIf="balanceDetailsTable">
+                    <div class="pt-2">
+
+                        <div class="card-content table-responsive mb-3 ">
+                            <table id="balancedetailstable" class="table table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <th>Email</th>
+                                        <th>Contact</th>
+                                        <th>Owe to You </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of BalanceDetails">
+                                        <td>{{item.fullName}}</td>
+                                        <td>{{item.email}}</td>
+                                        <td>{{item.contact}}</td>
+                                        <td>{{item.oweAmount}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

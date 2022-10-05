@@ -1,0 +1,104 @@
+.material-icons {
+    vertical-align: bottom;
+}
+
+.profile-card {
+    text-align: center;
+
+    img {
+        width: 155px;
+        height: 60px;
+    }
+}
+
+.mat-list-item {
+    font-size: 12px !important;
+}
+
+::ng-deep .mat-toolbar {
+    z-index: 999;
+    position: fixed;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+
+.mat-sidenav {
+    min-width: 230px;
+    width: 230px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 0;
+    height: 95vh;
+}
+
+::ng-deep .mat-menu-content {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.mat-menu-item {
+    line-height: 35px;
+    height: 35px;
+}
+
+
+
+::ng-deep .mat-menu-panel {
+    max-height: 300px !important;
+}
+
+.mat-badge-content {
+    background: #f1948a;
+    color: whitesmoke;
+}
+
+.active-list-item {
+    color: #E74C3C !important;
+    background-color: #FADBD8 !important;
+    border-top-right-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
+    width: 90% !important;
+    .material-icons {
+        color: #E74C3C !important;
+    }
+}
+
+a:hover {
+    background-color: #FADBD8 !important;
+    border-top-right-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
+    width: 90% !important;
+    color: #a8382c !important;
+    .material-icons {
+        color: #a8382c !important;
+    }
+}
+
+a {
+    height: 45px !important;
+}
+
+.mat-accordion:hover {
+    background-color: #FADBD8 !important;
+    border-top-right-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
+    width: 90% !important;
+    color: #E74C3C !important;
+    .material-icons {
+        color: #E74C3C !important;
+    }
+}
+
+.disable_ripple:hover {
+    background-color: #FADBD8 !important;
+    border-top-right-radius: 25px !important;
+    border-bottom-right-radius: 25px !important;
+    width: 90% !important;
+    height: 40px !important;
+    color: #a8382c !important;
+    .material-icons {
+        color: #a8382c !important;
+    }
+}

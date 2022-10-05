@@ -1,0 +1,172 @@
+{
+	"info": {
+		"_postman_id": "d4b6b8bc-c1a3-4c0f-89c0-098bbe4ce8f0",
+		"name": "SplitBill_PostmanCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16763639"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fullName\":\"User__1\",\r\n    \"email\":\"user1@gmail.com\",\r\n    \"contact\":9090876767\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}createUser",
+							"host": [
+								"{{baseUrl}}createUser"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}allUsers",
+							"host": [
+								"{{baseUrl}}allUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Expenses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}userExpenses/3",
+							"host": [
+								"{{baseUrl}}userExpenses"
+							],
+							"path": [
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Balance",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}userBalance/1",
+							"host": [
+								"{{baseUrl}}userBalance"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Expense",
+			"item": [
+				{
+					"name": "Add Expense",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"expenseName\": \"Monthly Electricity Bill\",\r\n    \"expenseDescription\": \"Electricity Bill\",\r\n    \"expenseCategory\": \"Equal\",\r\n    \"expenseAmount\": \"1000\",\r\n    \"expenseOwnerId\": 2,\r\n    \"expenseMembers\": [\r\n        {\r\n            \"id\": 1,\r\n            \"amount\": \"250.00\"\r\n        },\r\n        {\r\n            \"id\": 2,\r\n            \"amount\": \"250.00\"\r\n        }\r\n        {\r\n            \"id\": 3,\r\n            \"amount\": \"250.00\"\r\n        },\r\n        {\r\n            \"id\": 4,\r\n            \"amount\": \"250.00\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}addExpense",
+							"host": [
+								"{{baseUrl}}addExpense"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Expenses",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}allBills",
+							"host": [
+								"{{baseUrl}}allBills"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Bill Contribution",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}billContribution/1",
+							"host": [
+								"{{baseUrl}}billContribution"
+							],
+							"path": [
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "localhost:3000/",
+			"type": "string"
+		}
+	]
+}

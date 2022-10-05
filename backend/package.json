@@ -1,0 +1,33 @@
+{
+  "name": "splitapp",
+  "version": "1.0.0",
+  "description": "nodejs splitapp for unico connect",
+  "main": "server.js",
+  "scripts": {
+    "build": "webpack",
+    "prod": "node dist/api.bundle.js",
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mysql"
+  ],
+  "author": "Sourabh Ambarshetti",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.1",
+    "mysql2": "^2.3.2",
+    "nodemailer": "^6.7.3",
+    "sequelize": "^6.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-node-externals": "^3.0.0"
+  }
+}

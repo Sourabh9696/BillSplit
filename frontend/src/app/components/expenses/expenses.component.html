@@ -1,0 +1,306 @@
+<div class="container">
+    <div class="card testimonial-card col-md-12 " *ngIf="expenseDetailsTable">
+        <div class="pt-2">
+            <div class="header">
+                <div class="row">
+                    <div class="col-md-6 mt-2">
+                        <button (click)="openModel('#addUserModel')" mat-stroked-button color="primary"
+                            style="float: left;">Add Expense</button>
+                    </div>
+                </div>
+                <hr>
+            </div>
+
+            <div class="card-content table-responsive mb-3">
+                <table id="expensedetailstable" class="table table-hover ">
+                    <thead>
+                        <tr>
+                            <th>&nbsp; Action</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Amount</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let item of ExpenseDetails">
+                            <td style="padding: 0px !important;">
+                                <mat-icon class="btn-sm" style="cursor: pointer;" matTooltip="Contribution"
+                                    (click)="getBillContribution(item);">description</mat-icon>&nbsp;&nbsp;
+                            </td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.description}}</td>
+                            <td>{{item.category}}</td>
+                            <td>{{item.amount}}</td>
+                            <td>{{item.createdAt | date}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="expenseContributionModel" tabindex="-1" role="dialog" data-backdrop="static"
+    data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row col-md-12">
+                    <div class="col-md-6">
+                        <h5 class="modal-title">Expenses Contribution</h5>
+                    </div>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card testimonial-card col-md-12 " *ngIf="expenseContributionTable">
+                    <div class="pt-2">
+
+                        <div class="card-content table-responsive mb-3 ">
+                            <table id="expensecontributiontable" class="table table-hover ">
+                                <thead>
+                                    <tr>
+                                        <th>Full Name</th>
+                                        <th>Email</th>
+                                        <th>Contact</th>
+                                        <th>Expense Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let item of ExpenseContribution">
+                                        <td>{{item.fullName}}</td>
+                                        <td>{{item.email}}</td>
+                                        <td>{{item.contact}}</td>
+                                        <td>{{item.billUsers[0].amount}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="modal fade" id="addUserModel" tabindex="-1" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Expenses</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="CloseMd()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="stepper1" class="bs-stepper">
+                    <div class="bs-stepper-header"
+                        style="background-color: #F4F6F6; border-radius:2%; max-height: 2% !important; margin-top: 2%; margin-left: 2%; margin-right: 2%; box-shadow: 0 15px 20px rgba(0, 0, 0, .1);">
+                        <div class="step" data-target="#test-l-1" style=" pointer-events: none !important;">
+                            <button class="step-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label" style="font-size: smaller !important;">Create
+                                    Expense</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#test-l-2" style=" pointer-events: none !important;">
+                            <button class="step-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label" style="font-size: smaller !important;">Split
+                                    Expense</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="bs-stepper-content">
+                        <div class="card" style="margin-top: 2%; box-shadow: 0 15px 20px rgba(0, 0, 0, .1);">
+                            <div class="card-body">
+                                <div id="test-l-1" class="content">
+                                    <form *ngIf="addExpenseForm" [formGroup]="addExpenseForm" (ngSubmit)="addExpense()">
+                                        <div class="row">
+                                            <mat-form-field>
+                                                <input required type="text" matInput placeholder="Expense Name"
+                                                    formControlName="expenseName" />
+                                                <mat-error
+                                                    *ngIf="isSubmitted && addExpenseForm.get('expenseName').hasError('required')">
+                                                    Expense Name
+                                                    is required</mat-error>
+                                                <mat-error
+                                                    *ngIf="isSubmitted && addExpenseForm.get('expenseName').hasError('pattern')">
+                                                    Expense Name
+                                                    must contain at least 7 Characters</mat-error>
+                                            </mat-form-field>
+
+                                            <mat-form-field>
+                                                <input required type="text" matInput placeholder="Expense Description"
+                                                    formControlName="expenseDescription" />
+                                                <mat-error
+                                                    *ngIf="isSubmitted && addExpenseForm.get('expenseDescription').hasError('required')">
+                                                    Expense Description is
+                                                    required</mat-error>
+                                                <mat-error
+                                                    *ngIf="isSubmitted && addExpenseForm.get('expenseDescription').hasError('pattern')">
+                                                    Expense Description
+                                                    must contain at least 7 Characters</mat-error>
+                                            </mat-form-field>
+
+                                            <mat-form-field>
+                                                <mat-label>Expense Category</mat-label>
+                                                <mat-select formControlName="expenseCategory">
+                                                    <mat-option value="Equal">Equal</mat-option>
+                                                    <mat-option value="Exact">Exact</mat-option>
+                                                    <mat-option value="Percentage">Percentage</mat-option>
+                                                </mat-select>
+                                                <mat-error
+                                                    *ngIf="isSubmitted && addExpenseForm.get('expenseCategory').hasError('required')">
+                                                    Expense
+                                                    Category is required</mat-error>
+                                            </mat-form-field>
+
+                                            <mat-form-field>
+                                                <mat-label>Expense Owner</mat-label>
+                                                <mat-select formControlName="expenseOwnerId">
+                                                    <mat-option *ngFor="let list of UsersDetails" [value]="list.id">
+                                                        {{list.fullName}}</mat-option>
+                                                </mat-select>
+                                                <mat-error
+                                                    *ngIf="isSubmitted && addExpenseForm.get('expenseOwnerId').hasError('required')">
+                                                    Expense
+                                                    Owner is required</mat-error>
+                                            </mat-form-field>
+
+                                            <mat-form-field>
+                                                <mat-label>Select People's</mat-label>
+                                                <mat-select formControlName="expenseMembers"
+                                                    placeholder="Select People's" multiple>
+                                                    <mat-option *ngFor="let list of UsersDetails" [value]="list.id">
+                                                        {{list.fullName}}</mat-option>
+                                                </mat-select>
+                                                <mat-error
+                                                    *ngIf="isSubmitted && addExpenseForm.get('expenseMembers').hasError('required')">
+                                                    Select People's is required</mat-error>
+                                            </mat-form-field>
+
+                                            <mat-form-field>
+                                                <input required type="text" matInput placeholder="Expense Amount"
+                                                    formControlName="expenseAmount" />
+                                                <mat-error
+                                                    *ngIf="isSubmitted && addExpenseForm.get('expenseAmount').hasError('required')">
+                                                    Expense Amount is
+                                                    required</mat-error>
+                                                <mat-error
+                                                    *ngIf="isSubmitted && addExpenseForm.get('expenseAmount').hasError('pattern')">
+                                                    Expense Amount Invalid</mat-error>
+                                            </mat-form-field>
+                                        </div>
+                                      
+                                        <div class="row">
+                                            <div class="col-md-6"></div>
+                                            <div class="col-md-6"><button style="float: right;" type="submit"
+                                                    mat-flat-button color="primary">Continue</button></div>
+                                        </div>
+                                    </form>
+                                </div>
+
+                                <div id="test-l-2" class="content">
+                                    <form *ngIf="splitExpenseForm" [formGroup]="splitExpenseForm"
+                                        (ngSubmit)="SplitExpense()">
+                                        <div class="card-body">
+                                            <div formArrayName="expenseMembers">
+                                                <div *ngFor="let list of splitexpense.controls; let i=index">
+                                                    <div [formGroupName]="i">
+                                                        <div class="card card-info">
+                                                            <div class="card-header  ht-25">
+                                                                <div class="row">
+                                                                    <div class="col-md-6">
+                                                                        <h6
+                                                                            style="font-weight: normal; font-size: small; margin-bottom: 0.4%;">
+                                                                            Person {{i+1}}
+                                                                        </h6>
+                                                                    </div>
+                                                                    <div class="col-md-6 ">
+                                                                        <div class="card-tools"
+                                                                            style="margin-top: -1% !important; height: 50% !important; float: right;">
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+
+                                                            <div class="card-body">
+                                                                <div class="row">
+                                                                    <mat-form-field>
+                                                                        <mat-label>Select People's</mat-label>
+                                                                        <mat-select formControlName="id"
+                                                                            placeholder="Select People's">
+                                                                            <mat-option
+                                                                                *ngFor="let list of UsersDetails"
+                                                                                [value]="list.id">
+                                                                                {{list.fullName}}</mat-option>
+                                                                        </mat-select>
+                                                                    </mat-form-field>
+
+                                                                    <mat-form-field>
+                                                                        <input required type="text" matInput
+                                                                            placeholder="Expense Amount / Percentage"
+                                                                            formControlName="amount" />
+                                                                        <mat-error
+                                                                            *ngIf="isSubmitted && list.controls.amount.errors?.required">
+                                                                             Amount is
+                                                                            required</mat-error>
+                                                                            <mat-error
+                                                                            *ngIf="isSubmitted && list.controls.amount.errors?.pattern">
+                                                                            Expense Amount Invalid</mat-error>
+                                                                    </mat-form-field>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6"></div>
+                                            <div class="col-md-6"><button style="float: right;" type="submit"
+                                                    mat-flat-button color="primary">Add Expense</button></div>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        </div>
+    </div>
+</div>

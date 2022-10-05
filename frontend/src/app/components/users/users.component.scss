@@ -1,0 +1,19 @@
+.mat-icon{
+    font-size: 20px;
+    color: gray;
+}
+   
+.mat-form-field.mat-form-field-should-float .mat-form-field-infix{
+    position: initial;
+}
+.mat-form-field.mat-form-field-should-float .mat-form-field-label-wrapper{
+    top: 0;
+    left: 15px;
+}
+
+.mat-form-field
+{
+ width: 100%;
+ padding-right:5%;
+ padding-left: 5%;
+}
