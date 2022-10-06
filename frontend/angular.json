@@ -6,7 +6,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ChassisBrakesDMS": {
+    "BillSplit": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -92,18 +92,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ChassisBrakesDMS:build"
+            "browserTarget": "BillSplit:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ChassisBrakesDMS:build:production"
+              "browserTarget": "BillSplit:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ChassisBrakesDMS:build"
+            "browserTarget": "BillSplit:build"
           }
         },
         "test": {
@@ -137,7 +137,7 @@
         }
       }
     },
-    "ChassisBrakesDMS-e2e": {
+    "BillSplit-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -146,11 +146,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ChassisBrakesDMS:serve"
+            "devServerTarget": "BillSplit:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ChassisBrakesDMS:serve:production"
+              "devServerTarget": "BillSplit:serve:production"
             }
           }
         },
@@ -166,5 +166,5 @@
       }
     }
   },
-  "defaultProject": "ChassisBrakesDMS"
+  "defaultProject": "BillSplit"
 }
